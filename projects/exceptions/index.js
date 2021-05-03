@@ -20,7 +20,7 @@ const ERROR_1 = 'empty array';
 const ERROR_2 = 'fn is not a function';
 
 function isAllTrue(array, fn) {
-  if (!Array.isArray(array) || array.length === 0) {
+  if (array.length === 0 || !(array instanceof Array)) {
     throw new Error(ERROR_1);
   } else if (typeof fn !== 'function') {
     throw new Error(ERROR_2);
@@ -50,9 +50,10 @@ function isAllTrue(array, fn) {
    isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false
  */
 function isSomeTrue(array, fn) {
-  if (!Array.isArray(array) || array.length === 0) {
+  if (array.length === 0 || !(array instanceof Array)) {
     throw new Error(ERROR_1);
-  } else if (typeof fn !== 'function') {
+  }
+  if (typeof fn !== 'function') {
     throw new Error(ERROR_2);
   }
   for (let i = 0; i < array.length; i++) {
